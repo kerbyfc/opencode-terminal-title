@@ -1,0 +1,27 @@
+{
+  "name": "opencode-terminal-title",
+  "version": "0.1.0",
+  "description": "OpenCode V2 TUI plugin: terminal title without the OC | prefix and with a ❓ marker for needs input",
+  "type": "module",
+  "exports": {
+    "./tui": "./tui.ts"
+  },
+  "files": [
+    "tui.ts",
+    "README.md"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "tui",
+    "terminal-title"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kerbyfc/opencode-terminal-title.git"
+  },
+  "homepage": "https://github.com/kerbyfc/opencode-terminal-title#readme",
+  "bugs": {
+    "url": "https://github.com/kerbyfc/opencode-terminal-title/issues"
+  }
+}
