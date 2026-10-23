@@ -18,6 +18,12 @@ opencode plugin add github:kerbyfc/opencode-terminal-title
 
 Или вручную: скопировать каталог в `~/.config/opencode/plugins/terminal-title` (достаточно `tui.ts` и `package.json`). После установки перезапустить OpenCode.
 
+## Проверка
+
+```sh
+npm test
+```
+
 ## Как работает
 
 Штатный TUI ставит заголовок через `renderer.setTerminalTitle`. Плагин подменяет этот метод: снимает `OC | ` и добавляет маркер. `needs input:` ищется в последней непустой строке последнего ответа ассистента; если у вас другой статус, поправьте `NEEDS_INPUT` в `tui.ts`.

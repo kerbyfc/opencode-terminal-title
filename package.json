@@ -16,6 +16,9 @@
     "tui",
     "terminal-title"
   ],
+  "scripts": {
+    "test": "node --experimental-strip-types --test test.mts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kerbyfc/opencode-terminal-title.git"
