@@ -1,7 +1,7 @@
 {
   "name": "opencode-terminal-title",
   "version": "0.1.0",
-  "description": "OpenCode V2 TUI plugin: terminal title without the OC | prefix and with a ❓ marker for needs input",
+  "description": "OpenCode V2 TUI plugin: terminal title without the OC | prefix and with a ◉ marker for needs input",
   "type": "module",
   "exports": {
     "./tui": "./tui.ts"

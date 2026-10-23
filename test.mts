@@ -84,7 +84,7 @@ test("заголовок: префикс, needs input, работа, разре�
   ]
   listener?.({ details: { type: "session.execution.succeeded" } })
   await tick()
-  assert.equal(titles.at(-1), "❓ Демо")
+  assert.equal(titles.at(-1), "◉ Демо")
 
   // Во время работы маркера нет.
   running = true
@@ -98,7 +98,7 @@ test("заголовок: префикс, needs input, работа, разре�
   permissions = [{ id: "perm_1" }]
   listener?.({ details: { type: "permission.asked" } })
   await tick()
-  assert.equal(titles.at(-1), "❓ Демо")
+  assert.equal(titles.at(-1), "◉ Демо")
 
   permissions = []
   listener?.({ details: { type: "permission.replied" } })

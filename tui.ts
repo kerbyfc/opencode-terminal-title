@@ -1,4 +1,4 @@
-// Заголовок терминала OpenCode: снимает служебный префикс «OC | » и ставит «❓ »,
+// Заголовок терминала OpenCode: снимает служебный префикс «OC | » и ставит «◉ »,
 // когда сессия ждёт владельца — висит разрешение/форма или последняя реплика
 // ассистента кончается строкой «needs input:».
 //
@@ -8,6 +8,7 @@
 
 const PREFIX = "OC | "
 const NEEDS_INPUT = "needs input:"
+const MARK = "◉ "
 
 function stripPrefix(title: string): string {
   return title.startsWith(PREFIX) ? title.slice(PREFIX.length) : title
@@ -44,7 +45,7 @@ export default {
       // Пока TUI приостановлен (Ctrl+Z, внешний редактор), заголовок не трогаем:
       // штатный помощник хоста в этом состоянии тоже молчит.
       if (!base || renderer.isDestroyed || renderer.controlState === "explicit_suspended") return
-      const mark = active !== undefined && waiting.get(active) === true ? "❓ " : ""
+      const mark = active !== undefined && waiting.get(active) === true ? MARK : ""
       setTitle(mark + base)
     }
 
