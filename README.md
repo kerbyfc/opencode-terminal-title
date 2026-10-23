@@ -1,36 +1,36 @@
 # opencode-terminal-title
 
-TUI-плагин для OpenCode V2: убирает служебный префикс `OC | ` из заголовка терминала и ставит `◉ `, когда сессия ждёт ответа владельца.
+An OpenCode V2 TUI plugin that removes the `OC | ` prefix from the terminal title and prepends `◉ ` when a session is waiting for you.
 
-| Ситуация | Заголовок |
+| State | Terminal title |
 | --- | --- |
-| Обычная сессия | `Fix auth` вместо `OC \| Fix auth` |
-| Последняя реплика ассистента кончается `needs input:` | `◉ Fix auth` |
-| Висит разрешение или форма (включая сабагентов) | `◉ Fix auth` |
-| Сессия снова работает или ответ пришёл без статуса | `Fix auth` |
-| Главная страница, страница плагина | `OpenCode` |
+| Normal session | `Fix auth` instead of `OC \| Fix auth` |
+| The last assistant message ends with `needs input:` | `◉ Fix auth` |
+| A permission request or form is pending, including subagents | `◉ Fix auth` |
+| The session is running again, or the reply has no status | `Fix auth` |
+| Home or plugin page | `OpenCode` |
 
-## Установка
+## Install
 
 ```sh
 opencode plugin add github:kerbyfc/opencode-terminal-title
 ```
 
-Или вручную: скопировать каталог в `~/.config/opencode/plugins/terminal-title` (достаточно `tui.ts` и `package.json`). После установки перезапустить OpenCode.
+Or copy this directory to `~/.config/opencode/plugins/terminal-title` (`tui.ts` and `package.json` are enough). Restart OpenCode after installing.
 
-## Проверка
+## Test
 
 ```sh
 npm test
 ```
 
-## Как работает
+## How it works
 
-Штатный TUI ставит заголовок через `renderer.setTerminalTitle`. Плагин подменяет этот метод: снимает `OC | ` и добавляет маркер. `needs input:` ищется в последней непустой строке последнего ответа ассистента; если у вас другой статус, поправьте `NEEDS_INPUT` в `tui.ts`.
+The TUI sets the terminal title through `renderer.setTerminalTitle`. The plugin wraps that method, strips `OC | `, and adds the marker. `needs input:` is read from the last non-empty line of the latest assistant message; change `NEEDS_INPUT` in `tui.ts` if your convention differs.
 
-Плагин TUI-only: его место — `cli.json` или автоподхват из `~/.config/opencode/plugins`, в `opencode.json` добавлять не нужно.
+This is a TUI-only plugin: it belongs in `cli.json` or the auto-discovered `~/.config/opencode/plugins` directory, not in `opencode.json`.
 
-## Ограничения
+## Limitations
 
-- Опирается на публичный метод `renderer.setTerminalTitle` OpenTUI, а не на отдельный хук заголовка. При смене API плагин может перестать работать — локально, без последствий для сервера.
-- Маркер `◉` включается и при висящем разрешении/форме: это тот же случай «ждёт владельца».
+- The plugin relies on the public `renderer.setTerminalTitle` method from OpenTUI rather than a dedicated title hook. If that API changes, the plugin may stop working; this only affects the local TUI, not the server.
+- The `◉` marker also appears while a permission request or form is pending: both mean the session is waiting for you.
