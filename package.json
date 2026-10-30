@@ -2,6 +2,7 @@
   "name": "opencode-terminal-title",
   "version": "0.2.0",
   "description": "OpenCode V2 TUI plugin: configurable title prefix cleanup, a working spinner, and a needs-input marker",
+  "license": "MIT",
   "type": "module",
   "exports": {
     "./tui": "./tui.ts"

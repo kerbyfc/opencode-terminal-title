@@ -62,3 +62,7 @@ This is a TUI-only plugin: it belongs in `cli.json` or the auto-discovered `~/.c
 
 - The plugin relies on the public `renderer.setTerminalTitle` method from OpenTUI rather than a dedicated title hook. If that API changes, the plugin may stop working; this only affects the local TUI, not the server.
 - The marker also appears while a permission request or form is pending: both mean the session is waiting for you.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
