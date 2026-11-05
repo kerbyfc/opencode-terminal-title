@@ -5,7 +5,7 @@ An OpenCode V2 TUI plugin that removes a configurable terminal-title prefix (def
 | State | Terminal title |
 | --- | --- |
 | Normal session | `Fix auth` instead of `OC \| Fix auth` |
-| The session is working: agent, subagent, or shell | `⠋ Fix auth` (animated) |
+| The session is working: agent, subagent, or shell | `◐ Fix auth` (animated) |
 | The last assistant message ends with `needs input:` | `◉ Fix auth` |
 | A permission request or form is pending, including subagents | `◉ Fix auth` |
 | The session is idle | `Fix auth` |
@@ -31,8 +31,8 @@ Options are passed through `cli.json` using the object form of a plugin entry:
       "options": {
         "strip": "^OC \\| ",
         "marker": "◉",
-        "spinner": ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
-        "spinnerInterval": 100
+        "spinner": ["◐", "◓", "◑", "◒"],
+        "spinnerInterval": 150
       }
     }
   ]
@@ -41,8 +41,8 @@ Options are passed through `cli.json` using the object form of a plugin entry:
 
 - `strip` — a JavaScript regular expression source applied to every terminal title. The first match is removed. Default: `^OC \| `, which removes the `OC | ` prefix.
 - `marker` — the symbol prepended when the session is waiting. The plugin adds one space after it; set it to `""` to disable the marker. Default: `◉`.
-- `spinner` — frames of the working animation. Set it to `false` or `[]` to disable the spinner. Default: `["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]`.
-- `spinnerInterval` — milliseconds between spinner frames. Default: `100`.
+- `spinner` — frames of the working animation. Set it to `false` or `[]` to disable the spinner. Default: `["◐", "◓", "◑", "◒"]`.
+- `spinnerInterval` — milliseconds between spinner frames. Default: `150`.
 
 The `strip` value is JSON, so a literal backslash is doubled: `"^OC \\| "` becomes the regex `^OC \| `. `|` is a regex metacharacter (alternation), so it must be escaped. A character class avoids the escaping: `"^OC [|] "` is the same prefix.
 

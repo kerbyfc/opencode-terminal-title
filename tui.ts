@@ -9,8 +9,8 @@
 
 const DEFAULT_STRIP = /^OC \| /
 const DEFAULT_MARK = "◉"
-const DEFAULT_SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
-const DEFAULT_SPINNER_INTERVAL = 100
+const DEFAULT_SPINNER = ["◐", "◓", "◑", "◒"]
+const DEFAULT_SPINNER_INTERVAL = 150
 const NEEDS_INPUT = "needs input:"
 
 type Mode = "idle" | "waiting" | "busy"

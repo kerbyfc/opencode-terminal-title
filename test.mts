@@ -122,7 +122,7 @@ test("заголовок: префикс, needs input, работа, разре�
   h.state.running.add("ses_root")
   h.emit("session.execution.started")
   await h.tick()
-  assert.equal(h.titles.at(-1), "⠋ Демо")
+  assert.equal(h.titles.at(-1), "◐ Демо")
 
   // Разрешение включает маркер, ответ — снимает.
   h.state.running.clear()
@@ -209,7 +209,7 @@ test("shell считается работой", async () => {
   h.state.shells = [{ status: "running" }]
   h.emit("shell.created")
   await h.tick()
-  assert.equal(h.titles.at(-1), "⠋ Demo")
+  assert.equal(h.titles.at(-1), "◐ Demo")
 
   h.state.shells = []
   h.emit("shell.exited")
@@ -227,7 +227,7 @@ test("сабагент считается работой", async () => {
   h.state.running.add("ses_child")
   h.emit("session.status")
   await h.tick()
-  assert.equal(h.titles.at(-1), "⠋ Demo")
+  assert.equal(h.titles.at(-1), "◐ Demo")
 
   h.cleanup?.()
 })
