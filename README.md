@@ -54,7 +54,7 @@ npm test
 
 ## How it works
 
-The TUI sets the terminal title through `renderer.setTerminalTitle`. The plugin wraps that method, applies the configured `strip` regex, and adds the configured spinner or marker. A session counts as working while the agent, any subagent in its family, a pending inbox item, or a shell is running. `needs input:` is read from the last non-empty line of the latest assistant message; change `NEEDS_INPUT` in `tui.ts` if your convention differs.
+The TUI sets the terminal title through `renderer.setTerminalTitle`. The plugin wraps that method, applies the configured `strip` regex, and adds the configured spinner or marker. A session counts as working while the agent, any subagent in its family, a pending inbox item, or a shell of the session or its subagents is running. `needs input:` is read from the last non-empty line of the latest assistant message; change `NEEDS_INPUT` in `tui.ts` if your convention differs.
 
 This is a TUI-only plugin: it belongs in `cli.json` or the auto-discovered `~/.config/opencode/plugins` directory, not in `opencode.json`.
 

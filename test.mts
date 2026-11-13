@@ -206,12 +206,40 @@ test("shell считается работой", async () => {
   const h = harness()
 
   h.context.renderer.setTerminalTitle("OC | Demo")
-  h.state.shells = [{ status: "running" }]
+  h.state.shells = [{ status: "running", metadata: { sessionID: "ses_root" } }]
   h.emit("shell.created")
   await h.tick()
   assert.equal(h.titles.at(-1), "◐ Demo")
 
   h.state.shells = []
+  h.emit("shell.exited")
+  await h.tick()
+  assert.equal(h.titles.at(-1), "Demo")
+
+  h.cleanup?.()
+})
+
+test("shell чужой сессии в том же каталоге работой не считается", async () => {
+  const h = harness()
+
+  h.context.renderer.setTerminalTitle("OC | Demo")
+
+  // Соседняя сессия гоняет команду в том же каталоге — свой заголовок остаётся спокойным.
+  h.state.shells = [{ status: "running", metadata: { sessionID: "ses_other" } }]
+  h.emit("shell.created")
+  await h.tick()
+  assert.equal(h.titles.at(-1), "Demo")
+
+  // Shell сабагента — работа своей сессии.
+  h.state.family = ["ses_root", "ses_child"]
+  h.state.shells = [{ status: "running", metadata: { sessionID: "ses_child" } }]
+  h.emit("shell.created")
+  await h.tick()
+  assert.equal(h.titles.at(-1), "◐ Demo")
+
+  // Закончился свой и сабагента, чужой ещё идёт — спиннер гаснет.
+  h.state.family = ["ses_root"]
+  h.state.shells = [{ status: "running", metadata: { sessionID: "ses_other" } }]
   h.emit("shell.exited")
   await h.tick()
   assert.equal(h.titles.at(-1), "Demo")

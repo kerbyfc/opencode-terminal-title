@@ -159,8 +159,12 @@ export default {
       const pending = family.some((id) =>
         (context.data.session.pending.list(id) ?? []).some((item: any) => item?.type !== "synthetic"),
       )
+      // shell.list отдаёт команды всего каталога, а не только этой сессии: прогон в
+      // соседней сессии не делает работу здесь. Свои — сессии и её сабагентов.
       const shells = context.data.shell.list(context.data.session.get(sessionID)?.location) ?? []
-      const shell = shells.some((item: any) => item?.status === "running")
+      const shell = shells.some(
+        (item: any) => item?.status === "running" && family.includes(item?.metadata?.sessionID),
+      )
 
       const messages: any[] = context.data.session.message.list(sessionID)
       const last = [...messages].reverse().find((message) => message?.type === "assistant")
